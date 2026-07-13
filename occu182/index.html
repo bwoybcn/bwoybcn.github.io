@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OCCU182 · Personal and Professional Development 1 — Interactive Assessment Brief</title>
+<style>
+  :root{
+    --navy:#1d2d5c; --navy-dark:#14203f; --blue:#2b5bd7; --teal:#0e8f8b;
+    --gold:#c99514; --red:#b3403c; --green:#2c7a4b;
+    --ink:#22283a; --muted:#5c6478; --line:#e3e6ef;
+    --bg:#f4f6fb; --card:#ffffff; --soft:#eef1f9;
+    --radius:14px; --shadow:0 1px 3px rgba(20,32,63,.08),0 8px 24px rgba(20,32,63,.07);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;font-size:16px}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 20px}
+
+  /* ---------- header ---------- */
+  header{background:linear-gradient(135deg,var(--navy-dark) 0%,var(--navy) 55%,#2a3f7e 100%);color:#fff;padding:38px 0 30px}
+  .crumb{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:#aebadf;font-weight:600}
+  header h1{font-size:clamp(24px,4vw,36px);line-height:1.2;margin:10px 0 6px;font-weight:700}
+  header .sub{color:#c9d3ef;font-size:15.5px;max-width:640px}
+  .fact-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-top:24px}
+  .fact{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.16);border-radius:10px;padding:10px 14px}
+  .fact .k{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#a9b6dd;font-weight:600}
+  .fact .v{font-size:15px;font-weight:600;margin-top:2px}
+  .fact .v small{font-weight:400;color:#c9d3ef}
+
+  /* ---------- tabs ---------- */
+  nav{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 2px 10px rgba(20,32,63,.05)}
+  .tabs{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{flex:0 0 auto;padding:15px 16px 12px;font-size:14.5px;font-weight:600;color:var(--muted);background:none;border:none;border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap;font-family:inherit}
+  .tab:hover{color:var(--navy)}
+  .tab.active{color:var(--navy);border-bottom-color:var(--blue)}
+  .tab .n{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--soft);color:var(--navy);font-size:11.5px;margin-right:7px}
+  .tab.active .n{background:var(--blue);color:#fff}
+
+  main{padding:34px 0 70px}
+  section.panel{display:none;animation:fade .25s ease}
+  section.panel.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+  h2{font-size:23px;color:var(--navy);margin-bottom:6px}
+  .lede{color:var(--muted);margin-bottom:22px;max-width:720px}
+  h3{font-size:17px;color:var(--navy);margin:0 0 10px}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px 24px;margin-bottom:18px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:760px){.grid2{grid-template-columns:1fr}}
+
+  .badge{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:999px}
+  .b-blue{background:#e3eafc;color:#1d47b8}
+  .b-teal{background:#dff3f2;color:#0b6f6c}
+  .b-gold{background:#fbf0d3;color:#8a6407}
+  .b-red{background:#fbe4e3;color:#93312e}
+  .b-green{background:#e0f2e7;color:#226340}
+  .b-grey{background:#eceef4;color:#4c5568}
+
+  .callout{border-left:4px solid var(--blue);background:var(--soft);border-radius:0 10px 10px 0;padding:14px 18px;margin:14px 0}
+  .callout.warn{border-left-color:var(--red);background:#fdf2f1}
+  .callout.gold{border-left-color:var(--gold);background:#fdf8ec}
+  .callout.green{border-left-color:var(--green);background:#f0f8f2}
+  .callout .t{font-weight:700;font-size:13.5px;letter-spacing:.04em;text-transform:uppercase;margin-bottom:4px;color:var(--navy)}
+
+  .quote{font-size:14.5px;color:#3c4356;background:#fafbfe;border:1px dashed #ccd3e6;border-radius:10px;padding:12px 16px;margin-top:10px}
+  .quote::before{content:"From the brief: ";font-weight:700;color:var(--navy);font-size:12px;letter-spacing:.05em;text-transform:uppercase;display:block;margin-bottom:4px}
+
+  ul.clean{list-style:none;margin:8px 0}
+  ul.clean li{padding:7px 0 7px 28px;position:relative}
+  ul.clean li::before{content:"";position:absolute;left:4px;top:14px;width:9px;height:9px;border-radius:3px;background:var(--teal)}
+
+  /* component cards */
+  .comp{border-top:5px solid var(--blue);position:relative}
+  .comp.c2{border-top-color:var(--teal)}
+  .comp .pct{position:absolute;top:18px;right:22px;font-size:30px;font-weight:800;color:var(--blue);opacity:.9}
+  .comp.c2 .pct{color:var(--teal)}
+  .meta-row{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 4px}
+
+  .split{display:flex;height:14px;border-radius:999px;overflow:hidden;margin:14px 0 6px;box-shadow:inset 0 0 0 1px var(--line)}
+  .split .a{background:var(--blue);width:50%}
+  .split .b{background:var(--teal);width:50%}
+  .split-labels{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-bottom:6px}
+
+  /* LO cards */
+  .lo{display:flex;gap:16px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 20px;margin-bottom:12px}
+  .lo .tag{flex:0 0 auto;width:52px;height:52px;border-radius:12px;display:grid;place-items:center;font-weight:800;color:#fff;font-size:15px}
+  .lo p{margin-top:2px}
+  .lo .assessed{font-size:13px;color:var(--muted);margin-top:6px}
+  .lo1 .tag{background:#2b5bd7}.lo2 .tag{background:#0e8f8b}.lo3 .tag{background:#7a4bd0}.lo4 .tag{background:#c07a12}
+
+  /* accordions */
+  details{background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);margin-bottom:10px;overflow:hidden}
+  details summary{cursor:pointer;padding:15px 20px;font-weight:600;color:var(--navy);list-style:none;display:flex;align-items:center;gap:10px}
+  details summary::-webkit-details-marker{display:none}
+  details summary::after{content:"+";margin-left:auto;font-size:20px;color:var(--blue);transition:transform .2s}
+  details[open] summary::after{transform:rotate(45deg)}
+  details .body{padding:0 20px 18px;color:#333a4e}
+  details .body p{margin-bottom:10px}
+
+  /* checklist */
+  .chk{display:flex;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;cursor:pointer;transition:background .15s,border-color .15s}
+  .chk:hover{border-color:#bcc7e6}
+  .chk input{margin-top:5px;width:18px;height:18px;accent-color:var(--green);flex:0 0 auto;cursor:pointer}
+  .chk.done{background:#f2faf4;border-color:#bfe3cb}
+  .chk.done .txt{color:#5d6a76;text-decoration:line-through;text-decoration-color:#9fc7ab}
+  .chk .txt b{color:var(--navy)}
+  .chk.done .txt b{color:#5d6a76}
+  .progress-wrap{background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:16px 20px;margin-bottom:18px}
+  .pbar{height:10px;border-radius:999px;background:var(--soft);overflow:hidden;margin-top:8px}
+  .pbar>div{height:100%;width:0%;background:linear-gradient(90deg,var(--teal),var(--green));border-radius:999px;transition:width .3s}
+  .pnote{font-size:13px;color:var(--muted);margin-top:6px}
+
+  .kv{width:100%;border-collapse:collapse;font-size:15px}
+  .kv th,.kv td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  .kv th{color:var(--muted);font-weight:600;width:42%;font-size:13.5px;text-transform:uppercase;letter-spacing:.04em}
+  .kv tr:last-child th,.kv tr:last-child td{border-bottom:none}
+
+  a{color:var(--blue)}
+  footer{border-top:1px solid var(--line);background:#fff;padding:22px 0;color:var(--muted);font-size:13.5px}
+  .tbc{background:#fbf0d3;color:#8a6407;border-radius:6px;padding:0 6px;font-weight:700;font-size:13px}
+  @media print{nav,header .fact-strip{display:none}section.panel{display:block!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="crumb">University of Liverpool · School of Allied Health Professions and Nursing · BSc (Hons) Occupational Therapy</div>
+    <h1>Personal and Professional Development 1</h1>
+    <div class="sub">Interactive assessment brief for <strong>OCCU182</strong> — everything you need to know about how this module is assessed, in one place.</div>
+    <div class="fact-strip">
+      <div class="fact"><div class="k">Code</div><div class="v">OCCU182</div></div>
+      <div class="fact"><div class="k">Year / Semester</div><div class="v">Year 1 · Sem 1</div></div>
+      <div class="fact"><div class="k">Course No</div><div class="v">2026–2027</div></div>
+      <div class="fact"><div class="k">Sitting</div><div class="v">First</div></div>
+      <div class="fact"><div class="k">Level / Credits</div><div class="v">Level 4 · 15</div></div>
+      <div class="fact"><div class="k">Submission date</div><div class="v">TBC <small>· 11am, via CANVAS</small></div></div>
+    </div>
+  </div>
+</header>
+
+<nav><div class="wrap"><div class="tabs" role="tablist">
+  <button class="tab active" data-t="overview"><span class="n">1</span>Overview</button>
+  <button class="tab" data-t="assessment"><span class="n">2</span>Your Two Assessments</button>
+  <button class="tab" data-t="outcomes"><span class="n">3</span>Learning Outcomes</button>
+  <button class="tab" data-t="rules"><span class="n">4</span>Submission &amp; Rules</button>
+  <button class="tab" data-t="module"><span class="n">5</span>The Module</button>
+  <button class="tab" data-t="checklist"><span class="n">6</span>My Checklist</button>
+</div></div></nav>
+
+<main><div class="wrap">
+
+<!-- ================= OVERVIEW ================= -->
+<section class="panel active" id="overview">
+  <h2>The big picture</h2>
+  <p class="lede">This module is assessed through <strong>two summative components, each worth 50%</strong>. You must attempt <em>and pass both</em> with a mark of <strong>40% or above</strong> — a strong mark in one cannot make up for a fail in the other.</p>
+
+  <div class="card">
+    <h3>How your module mark is built</h3>
+    <div class="split-labels"><span><strong>Component 1</strong> · Practical (simulated placement)</span><span><strong>Component 2</strong> · Written reflection (1,000 words max)</span></div>
+    <div class="split"><div class="a"></div><div class="b"></div></div>
+    <div class="split-labels"><span>50%</span><span>50%</span></div>
+    <div class="callout warn"><div class="t">No compensation between components</div>You need <strong>40%+ in each component separately</strong>. Both are "must pass".
+      <div class="quote">This module will be assessed through two summative assessment components, each of 50%. Students must attempt and pass both components with a mark of 40% or above to pass this module. There is no compensation between assessment components.</div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>Key dates</h3>
+      <table class="kv">
+        <tr><th>Assessment release</th><td><span class="tbc">TBC</span></td></tr>
+        <tr><th>Submission (Component 2)</th><td><span class="tbc">TBC</span> — by <strong>11am</strong> on the submission date, via CANVAS</td></tr>
+        <tr><th>Results released</th><td>Via CANVAS and Liverpool Life</td></tr>
+      </table>
+      <div class="callout gold" style="margin-bottom:0"><div class="t">Dates marked TBC</div>These will be confirmed by the module team — check CANVAS announcements regularly.</div>
+    </div>
+    <div class="card">
+      <h3>The journey through the module</h3>
+      <ul class="clean">
+        <li><strong>Simulation week</strong> — where Component 1 (practical assessments) takes place.</li>
+        <li><strong>One-week practice placement (PP1, 37.5 hours)</strong> in a health or social care setting — <em>formatively</em> assessed (it doesn't carry marks, but it feeds your reflection).</li>
+        <li><strong>Component 2</strong> — your written reflective piece, submitted after placement.</li>
+      </ul>
+      <div class="quote">Students complete a one-week practice placement (37.5 hours), in a health or social care setting, which is formatively assessed and takes place after simulation week and prior to assessment 2.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Late penalty exemptions — they differ per component</h3>
+    <table class="kv">
+      <tr><th>Clinical assessment (50%)</th><td><span class="badge b-green">Exempt</span> from late penalty · <span class="badge b-red">Must pass</span></td></tr>
+      <tr><th>Written reflective piece (50%)</th><td><span class="badge b-gold">Late penalty applied</span> · <span class="badge b-red">Must pass</span></td></tr>
+    </table>
+    <p style="margin-top:10px;font-size:14.5px;color:var(--muted)">In plain terms: the practical is exempt from the late-penalty rule, but standard late penalties <strong>do apply</strong> to your written reflection — so plan to submit well before 11am on the deadline day.</p>
+  </div>
+</section>
+
+<!-- ================= ASSESSMENT ================= -->
+<section class="panel" id="assessment">
+  <h2>Your two assessments</h2>
+  <p class="lede">Both components are worth 50% each, both must be passed at 40%+, and there is no compensation between them.</p>
+
+  <div class="card comp">
+    <div class="pct">50%</div>
+    <span class="badge b-blue">Component 1</span>
+    <h3 style="margin-top:10px">Practical assessments — simulated placement</h3>
+    <div class="meta-row">
+      <span class="badge b-red">Must pass (40%+)</span>
+      <span class="badge b-green">Exempt from late penalty</span>
+      <span class="badge b-grey">Clinical assessment</span>
+    </div>
+    <p>During <strong>simulation week</strong> you'll complete practical assessments in realistic scenarios. You're being assessed on how you bring together four things at once:</p>
+    <ul class="clean">
+      <li><strong>Clinical reasoning</strong> — thinking through the "why" behind what you do.</li>
+      <li><strong>Communication</strong> — with clients and colleagues.</li>
+      <li><strong>Practical skills</strong> — safe, effective hands-on practice.</li>
+      <li><strong>Professional conduct</strong> — working within regulatory frameworks and professional boundaries.</li>
+    </ul>
+    <div class="quote">Students will complete practical assessments during a simulated placement exploring their ability to integrate clinical reasoning, communication, practical skills, and professional conduct within realistic scenarios. Competence is demonstrated not only through safe and effective practice but also through adherence to regulatory frameworks and professional boundaries that safeguard both clients and practitioners (50%).</div>
+  </div>
+
+  <div class="card comp c2">
+    <div class="pct">50%</div>
+    <span class="badge b-teal">Component 2</span>
+    <h3 style="margin-top:10px">Written reflective piece — 1,000 words maximum</h3>
+    <div class="meta-row">
+      <span class="badge b-red">Must pass (40%+)</span>
+      <span class="badge b-gold">Late penalty applies</span>
+      <span class="badge b-grey">Submit via CANVAS by 11am</span>
+    </div>
+    <p>A short reflective piece of work (<strong>1,000 words maximum</strong>) with two jobs to do:</p>
+    <ul class="clean">
+      <li><strong>Explore your experiences</strong> of occupational therapy (your simulation week and PP1 placement give you the raw material).</li>
+      <li><strong>Consider your learning and development needs</strong> — to support your continual professional development in line with professional standards.</li>
+    </ul>
+    <div class="quote">Students will present a short reflective piece of work (1000 words maximum) exploring experiences of occupational therapy and considering their learning and development needs to support continual professional development in line with professional standards (50%).</div>
+  </div>
+
+  <div class="card">
+    <h3>Formative assessment (no marks — but don't skip it)</h3>
+    <p>You complete a <strong>one-week practice placement (PP1, 37.5 hours)</strong> in a health or social care setting. It's formatively assessed — meaning you get feedback rather than a mark — and it sits <strong>after simulation week and before your reflective submission</strong>, making it ideal material for Component 2.</p>
+  </div>
+
+  <details>
+    <summary>😟 What happens if I don't pass? (Re-sit strategy)</summary>
+    <div class="body">
+      <p>The format for the re-assessment will be the <strong>same as for the first attempt</strong>, with two specifics:</p>
+      <p><strong>1.</strong> The requirements for each station will be different to the first sitting.<br>
+      <strong>2.</strong> Students would submit a re-worked version of their reflection.</p>
+      <p><strong>You won't be left to figure it out alone:</strong> guidance is given before the second attempt through a <strong>1:1 re-sit assessment tutorial</strong> with a member of the module teaching team, used to identify knowledge and skills gaps and agree actions to address them — to best facilitate a successful re-sit attempt.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>⚠️ Could the assessment plan change?</summary>
+    <div class="body">
+      <p>In exceptional circumstances (e.g. global pandemics), plans for assessment may be subject to change. Contact will be made via the VLE and an e-mail will be sent to each student informing them of any changes that prove to be necessary. The Health and Life Sciences FAQSC will be informed in advance of any such changes, so that approval can be given.</p>
+    </div>
+  </details>
+</section>
+
+<!-- ================= OUTCOMES ================= -->
+<section class="panel" id="outcomes">
+  <h2>Learning outcomes</h2>
+  <p class="lede">These four outcomes are what the module — and its assessments — are designed to evidence. Use them as a lens when preparing: every station and every paragraph of your reflection should map back to these.</p>
+
+  <div class="lo lo1"><div class="tag">LO1</div><div><p><strong>Describe</strong> the core roles, responsibilities, and values of the occupational therapy profession.</p><p class="assessed">Think: What does an OT actually do, and what values underpin the profession?</p></div></div>
+  <div class="lo lo2"><div class="tag">LO2</div><div><p><strong>Identify</strong> the key aspects of HCPC regulation, local governance and basic legal/ethical principles that shape safe and effective practice.</p><p class="assessed">Think: Who regulates you, and what rules keep clients and practitioners safe?</p></div></div>
+  <div class="lo lo3"><div class="tag">LO3</div><div><p><strong>Demonstrate</strong> emerging professional communication across a range of simulated environments.</p><p class="assessed">Think: This one is shown live — in simulation week scenarios.</p></div></div>
+  <div class="lo lo4"><div class="tag">LO4</div><div><p><strong>Describe</strong> the importance of reflection and continued professional development.</p><p class="assessed">Think: This is the heart of your written reflective piece.</p></div></div>
+
+  <div class="callout"><div class="t">Reading the verbs</div>At Level 4 the verbs matter: <strong>describe</strong> and <strong>identify</strong> ask you to show clear foundational knowledge; <strong>demonstrate</strong> asks you to show a skill in action. Nobody expects mastery yet — the brief itself says "<em>emerging</em> professional communication".</div>
+</section>
+
+<!-- ================= RULES ================= -->
+<section class="panel" id="rules">
+  <h2>Submission &amp; rules</h2>
+  <p class="lede">The rules below are where avoidable marks are lost. Two minutes here can save a world of pain later.</p>
+
+  <div class="card">
+    <h3>Submitting Component 2</h3>
+    <ul class="clean">
+      <li>Submit <strong>one electronic version</strong> of your assignment <strong>via CANVAS</strong>.</li>
+      <li>Deadline is <strong>11am</strong> on the submission date (date <span class="tbc">TBC</span>).</li>
+      <li><strong>File type is your responsibility.</strong> Uploading the wrong file type may be deemed a <strong>non-submission — a mark of zero</strong>.</li>
+    </ul>
+    <div class="quote">It is the student's responsibility to ensure that they submit their work as the correct file type for the assessment. Failure to upload the correct file type may result in the work being deemed a non-submission and a mark of zero awarded.</div>
+  </div>
+
+  <div class="card">
+    <h3>Generative AI — know where the line is</h3>
+    <p>By submitting, you are confirming your work follows the University guidance <a href="https://www.liverpool.ac.uk/media/livacuk/centre-for-innovation-in-education/digital-education/generative-ai-teach-learn-assess/guidance-on-the-use-of-generative-ai.pdf" target="_blank" rel="noopener">'Acceptable and Unacceptable use of Generative Artificial Intelligence in Assessments'</a>. Failure to comply may result in a breach of the Academic Integrity Policy (<a href="https://www.liverpool.ac.uk/media/livacuk/tqsd/code-of-practice-on-assessment/appendix_L_cop_assess.pdf" target="_blank" rel="noopener">COPA Appendix L</a>), which may require investigation.</p>
+    <div class="callout green"><div class="t">The short version</div>All use of Generative AI should be <strong>transparent</strong>, and any content created by it should be <strong>acknowledged</strong>. All work submitted must be your own, in line with the University's Code of Practice on Assessment (CoPA) and University guidance on the use of Generative AI in learning, teaching and assessment.</div>
+  </div>
+
+  <div class="card">
+    <h3>Presentation &amp; communication requirements</h3>
+    <p>Your written work must:</p>
+    <ul class="clean">
+      <li>Follow <strong>academic integrity</strong> guidelines</li>
+      <li>Use clear academic writing with <strong>accurate grammar and spelling</strong></li>
+      <li>Reference all sources using <strong>Harvard ('Cite Them Right') style</strong></li>
+      <li>Be written consistently in the <strong>third person</strong></li>
+    </ul>
+    <div class="callout gold" style="margin-bottom:0"><div class="t">Third person + reflection?</div>Yes — an unusual combination that catches people out. Reflective writing here should still be in the third person (e.g. "the student observed…" rather than "I observed…"). If in doubt, check with the module team.</div>
+  </div>
+</section>
+
+<!-- ================= MODULE ================= -->
+<section class="panel" id="module">
+  <h2>About the module</h2>
+  <p class="lede">OCCU182 is a <strong>Level 4, 15-credit</strong> module — the first in the <strong>Personal and Professional Development</strong> theme.</p>
+
+  <div class="card">
+    <h3>What the module introduces</h3>
+    <ul class="clean">
+      <li>The history of the occupational therapy profession</li>
+      <li>An introduction to the professional values, behaviours and attitudes required of an occupational therapist</li>
+      <li>The role of the regulatory and professional bodies</li>
+      <li>An introduction to the code of conduct and professional practice for occupational therapists</li>
+      <li>An introduction to continuing professional development and the professional requirements</li>
+    </ul>
+    <p style="margin-top:8px">You will also begin to develop a range of skills required for professional practice, including professional communication skills, leadership and readiness for clinical placements — engaging in a <strong>simulated placement week</strong> and a <strong>one-week clinical placement (PP1)</strong>, which will be formatively assessed.</p>
+  </div>
+
+  <div class="card">
+    <h3>Indicative assessment content</h3>
+    <p style="color:var(--muted);font-size:14.5px;margin-bottom:8px">The topics your learning — and assessment — will draw on:</p>
+    <ul class="clean">
+      <li>History of occupational therapy profession</li>
+      <li>Understanding of professional values, behaviours and attitude and professionalism</li>
+      <li>Professional standards, ethics, code of conduct, Professional Identity</li>
+      <li>Introduction to service awareness, leadership and placement readiness</li>
+      <li>Development of therapeutic communication</li>
+      <li>Development of observational skills, communication skills, therapeutic and professional relationships</li>
+      <li>Introduction to personal development tutorials</li>
+      <li>KnowHow Tutorials</li>
+      <li>ELFH / Oliver McGowan training</li>
+      <li>Simulation week and including a one-week placement (formatively assessed)</li>
+    </ul>
+  </div>
+
+  <h3 style="margin:22px 0 10px">How you'll be taught</h3>
+  <p style="color:var(--muted);font-size:14.5px;margin-bottom:12px">The module is delivered through digital case-based and simulation resources, with contents structured and scaffolded to build confidence, encourage independence and promote mastery. As one of the core clinical modules in the programme, it is designed to directly develop practical clinical knowledge and skills for the future workforce through clinical placement and authentic clinical learning experiences employing key signature pedagogies: case-based learning (CBL), practical clinical skills, placement and simulation. Learning communities will be established through small group activities during tutorials and practical clinical sessions incorporating supported discussion and peer-supported learning tasks.</p>
+
+  <details><summary>🏛️ Seminars</summary><div class="body"><p><em>Synchronous online or face-to-face, recorded for asynchronous access.</em></p><p>Large classroom-style learning and teaching sessions providing the opportunity for small group working and gaining feedback from peers and the tutor. In this way students learn from others' thinking and experience. They also provide opportunity for question and answer sessions to clarify concepts and issues being taught. <strong>Briefing and de-briefing for practice placement will be conducted within seminars.</strong></p></div></details>
+  <details><summary>👥 Tutorials</summary><div class="body"><p><em>Synchronous online or face-to-face, recorded for asynchronous access.</em></p><p>Small group discussion in uni-professional groups, and an academic advisor meeting conducted online. Engaging in tutorials can highlight strengths and identify areas for further study and areas for professional development needed by the student.</p></div></details>
+  <details><summary>📚 Self-directed study</summary><div class="body"><p>Students will consolidate learning through self-directed study and will be guided towards appropriate study resources to build their learning.</p></div></details>
+  <details><summary>🏥 Practice placement</summary><div class="body"><p>Placement completed under the supervision of a clinical practice educator; the student is given the opportunity to apply skills and knowledge within the clinical environment at the appropriate level of study.</p></div></details>
+  <details><summary>💻 On-line test</summary><div class="body"><p>Completion of e-learning for health mandatory training modules.</p></div></details>
+  <details><summary>🎭 Simulation</summary><div class="body"><p>Practice of skills required for clinical practice within the university environment or delivered virtually on-line.</p></div></details>
+</section>
+
+<!-- ================= CHECKLIST ================= -->
+<section class="panel" id="checklist">
+  <h2>My checklist</h2>
+  <p class="lede">Every item below comes straight from the brief. Tick things off as you go. <em>(Ticks last for this visit only — they reset when you close the page.)</em></p>
+
+  <div class="progress-wrap">
+    <strong id="ptext">0 of 12 done</strong>
+    <div class="pbar"><div id="pfill"></div></div>
+    <div class="pnote" id="pnote">Let's get started.</div>
+  </div>
+
+  <h3>Before &amp; during simulation week</h3>
+  <label class="chk"><input type="checkbox"><span class="txt"><b>Complete mandatory training</b> — ELFH / Oliver McGowan e-learning modules.</span></label>
+  <label class="chk"><input type="checkbox"><span class="txt"><b>Know the four things Component 1 assesses</b> — clinical reasoning, communication, practical skills, professional conduct.</span></label>
+  <label class="chk"><input type="checkbox"><span class="txt"><b>Review HCPC regulation, governance and legal/ethical basics</b> (LO2) — professional boundaries are explicitly assessed.</span></label>
+  <label class="chk"><input type="checkbox"><span class="txt"><b>Attend the placement briefing</b> — delivered within seminars.</span></label>
+
+  <h3 style="margin-top:20px">Placement (PP1)</h3>
+  <label class="chk"><input type="checkbox"><span class="txt"><b>Complete the one-week placement (37.5 hours)</b> in a health or social care setting.</span></label>
+  <label class="chk"><input type="checkbox"><span class="txt"><b>Capture reflection material as you go</b> — experiences, learning moments and development needs you can use in Component 2.</span></label>
+  <label class="chk"><input type="checkbox"><span class="txt"><b>Attend the placement de-brief</b> in seminars.</span></label>
+
+  <h3 style="margin-top:20px">Writing &amp; submitting Component 2</h3>
+  <label class="chk"><input type="checkbox"><span class="txt"><b>Stay within 1,000 words maximum</b>.</span></label>
+  <label class="chk"><input type="checkbox"><span class="txt"><b>Cover both required elements</b> — experiences of occupational therapy AND your learning &amp; development needs for CPD.</span></label>
+  <label class="chk"><input type="checkbox"><span class="txt"><b>Write in the third person</b>, with accurate grammar and spelling, referencing all sources in Harvard ('Cite Them Right') style.</span></label>
+  <label class="chk"><input type="checkbox"><span class="txt"><b>Check your Generative AI use is transparent and acknowledged</b>, in line with University guidance.</span></label>
+  <label class="chk"><input type="checkbox"><span class="txt"><b>Submit the correct file type via CANVAS before 11am</b> on the submission date — wrong file type can mean a mark of zero.</span></label>
+</section>
+
+</div></main>
+
+<footer><div class="wrap">
+  <strong>OCCU182 · Personal and Professional Development 1</strong> — interactive study version of the official assessment brief (School of Allied Health Professions and Nursing, BSc (Hons) Occupational Therapy, 2026–2027, First sitting).<br>
+  This page is a study aid. The official brief and CANVAS announcements are the authoritative source — where dates are marked <span class="tbc">TBC</span>, they will be confirmed by the module team.
+</div></footer>
+
+<script>
+(function(){
+  // Tabs
+  var tabs=document.querySelectorAll('.tab'),panels=document.querySelectorAll('.panel');
+  tabs.forEach(function(t){t.addEventListener('click',function(){
+    tabs.forEach(function(x){x.classList.remove('active')});
+    panels.forEach(function(p){p.classList.remove('active')});
+    t.classList.add('active');
+    document.getElementById(t.dataset.t).classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});
+  })});
+  // Checklist (in-memory only)
+  var boxes=document.querySelectorAll('.chk input');
+  var fill=document.getElementById('pfill'),ptext=document.getElementById('ptext'),pnote=document.getElementById('pnote');
+  var notes=[[0,"Let's get started."],[1,"Nice — first one down."],[4,"Good momentum. Keep going."],[8,"Over halfway there."],[11,"Nearly done — final checks."],[12,"All done. You're ready. 🎉"]];
+  function update(){
+    var done=0;boxes.forEach(function(b){if(b.checked)done++;b.closest('.chk').classList.toggle('done',b.checked)});
+    var total=boxes.length;
+    fill.style.width=(done/total*100)+'%';
+    ptext.textContent=done+' of '+total+' done';
+    var msg=notes[0][1];notes.forEach(function(n){if(done>=n[0])msg=n[1]});
+    pnote.textContent=msg;
+  }
+  boxes.forEach(function(b){b.addEventListener('change',update)});
+  update();
+})();
+</script>
+</body>
+</html>
