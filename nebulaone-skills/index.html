@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>nebulaONE Skills Library</title>
+<meta name="description" content="Ready-made skills for nebulaONE, with what each one does, how it works and a download.">
+<style>
+  :root{
+    --navy:#1d2d5c; --navy-dark:#14203f; --blue:#2b5bd7; --teal:#0e8f8b;
+    --ink:#22283a; --muted:#5c6478; --line:#e3e6ef;
+    --bg:#f4f6fb; --card:#ffffff; --soft:#eef1f9;
+    --btn:#2b5bd7; --btn-ink:#ffffff; --focus:#c99514;
+    --radius:14px; --shadow:0 1px 3px rgba(20,32,63,.08),0 8px 24px rgba(20,32,63,.07);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ink:#e6e9f2; --muted:#a6aec2; --line:#2c3550;
+      --bg:#0f1528; --card:#182038; --soft:#1f2944;
+      --btn:#5b84ee; --btn-ink:#0f1528; --teal:#3fc2bd;
+      --shadow:0 1px 3px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);
+    }
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;font-size:16px}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 16px}
+  a{color:var(--btn)}
+  :focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+  .skip{position:absolute;left:-9999px}
+  .skip:focus{left:16px;top:16px;background:#fff;color:#000;padding:8px 12px;z-index:10}
+
+  header{background:linear-gradient(135deg,var(--navy-dark) 0%,var(--navy) 55%,#2a3f7e 100%);color:#fff;padding:40px 0 32px}
+  .crumb{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:#aebadf;font-weight:600}
+  header h1{font-size:clamp(26px,4vw,38px);line-height:1.2;margin:10px 0 8px;font-weight:700}
+  header p{color:#c9d3ef;max-width:660px}
+
+  main{padding:28px 0 56px}
+  section{margin-bottom:36px}
+  h2{font-size:22px;margin-bottom:12px}
+
+  .howto{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px 22px}
+  .howto ol{padding-left:22px}
+  .howto li{margin:4px 0}
+  .note{color:var(--muted);font-size:14.5px;margin-top:10px}
+
+  .controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:16px}
+  .controls input{flex:1 1 260px;min-width:0;font:inherit;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font:inherit;font-size:14px;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+  .chip[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+  .count{color:var(--muted);font-size:14px;margin-bottom:12px}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 20px;display:flex;flex-direction:column;gap:10px}
+  .card h3{font-size:18.5px;line-height:1.3}
+  .meta{display:flex;flex-wrap:wrap;gap:6px;font-size:12.5px}
+  .tag{background:var(--soft);color:var(--muted);border-radius:6px;padding:2px 8px}
+  .tag.family{color:var(--teal);font-weight:600}
+  .summary{color:var(--ink)}
+  details{border-top:1px solid var(--line);padding-top:8px}
+  summary{cursor:pointer;font-weight:600;color:var(--btn)}
+  details h4{font-size:14px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:14px 0 4px}
+  details ul,details ol{padding-left:20px}
+  details li{margin:3px 0}
+  .prompt{font-style:italic}
+  .actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:6px}
+  .btn{display:inline-flex;align-items:center;gap:6px;font:inherit;font-size:15px;font-weight:600;padding:9px 16px;border-radius:10px;border:1px solid var(--btn);text-decoration:none;cursor:pointer}
+  .btn.primary{background:var(--btn);color:var(--btn-ink)}
+  .btn.secondary{background:transparent;color:var(--btn)}
+
+  .empty{background:var(--card);border:1px dashed var(--line);border-radius:var(--radius);padding:22px;color:var(--muted)}
+  .soon{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+  .soon li{background:var(--soft);border-radius:12px;padding:14px 16px}
+  .soon strong{display:block}
+  .soon span{color:var(--muted);font-size:14.5px}
+
+  footer{border-top:1px solid var(--line);color:var(--muted);font-size:14px;padding:20px 0 32px}
+</style>
+</head>
+<body>
+<a class="skip" href="#library">Skip to the skills</a>
+<header>
+  <div class="wrap">
+    <div class="crumb">nebulaONE</div>
+    <h1>Skills Library</h1>
+    <p>Skills teach nebulaONE how to do a particular job well, such as writing minutes or checking a message for clarity. Each skill here has been reviewed and tested. Find one you need, read what it does, and download it to add to your own nebulaONE.</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <section aria-labelledby="howto-h">
+    <h2 id="howto-h">How to use a skill</h2>
+    <div class="howto">
+      <ol>
+        <li>Find a skill below and open <strong>More about this skill</strong> to check it fits what you need.</li>
+        <li>Select <strong>Download</strong> to save the skill as a text file, or <strong>Copy text</strong> to copy it.</li>
+        <li>In nebulaONE, create a new personal skill and add the file or paste in the text.</li>
+        <li>Start a new chat and ask for the task in your own words. nebulaONE picks the skill when it fits, so you don't need to name it.</li>
+      </ol>
+      <p class="note">Personal skills are only visible to you. If you'd like a skill shared with your team or added for everyone, contact the library's owner.</p>
+    </div>
+  </section>
+
+  <section id="library" aria-labelledby="library-h">
+    <h2 id="library-h">Skills</h2>
+    <div class="controls">
+      <label for="q" class="skip">Search skills</label>
+      <input id="q" type="search" placeholder="Search, for example “minutes” or “email”" autocomplete="off">
+      <div class="chips" id="chips" role="group" aria-label="Filter by area"></div>
+    </div>
+    <p class="count" id="count" aria-live="polite"></p>
+    <div class="grid" id="grid"></div>
+    <noscript><p class="empty">This page needs JavaScript to list the skills. Please turn JavaScript on, or ask the library's owner for the skill files.</p></noscript>
+  </section>
+
+  <section id="soon-section" aria-labelledby="soon-h" hidden>
+    <h2 id="soon-h">Coming soon</h2>
+    <p class="note" style="margin:0 0 12px">These are being written and tested now. They'll appear above with a download once they pass review.</p>
+    <ul class="soon" id="soon"></ul>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">Last updated <span id="updated">recently</span>. Skills are plain text files and work in nebulaONE only.</div>
+</footer>
+
+<script>
+(function(){
+  var state = {skills: [], families: {}, family: "all", q: ""};
+  var grid = document.getElementById("grid");
+  var count = document.getElementById("count");
+
+  function esc(s){
+    return String(s == null ? "" : s).replace(/[&<>"']/g, function(c){
+      return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c];
+    });
+  }
+  function list(items, tag, cls){
+    if(!items || !items.length) return "";
+    return "<" + tag + ">" + items.map(function(i){
+      return "<li" + (cls ? ' class="' + cls + '"' : "") + ">" + esc(i) + "</li>";
+    }).join("") + "</" + tag + ">";
+  }
+  function familyName(key){ return state.families[key] || key; }
+
+  function card(s){
+    var file = "downloads/" + encodeURIComponent(s.name) + ".txt";
+    var sections = "";
+    if(s.what_it_does) sections += "<h4>What it does</h4><p>" + esc(s.what_it_does) + "</p>";
+    if(s.how_it_works && s.how_it_works.length) sections += "<h4>How it works</h4>" + list(s.how_it_works, "ol");
+    if(s.good_for && s.good_for.length) sections += "<h4>Good for</h4>" + list(s.good_for, "ul");
+    if(s.not_for && s.not_for.length) sections += "<h4>Not for</h4>" + list(s.not_for, "ul");
+    if(s.try_saying && s.try_saying.length) sections += "<h4>Try saying</h4>" + list(s.try_saying.map(function(p){ return "“" + p + "”"; }), "ul", "prompt");
+    return '<article class="card" id="' + esc(s.name) + '">' +
+      "<h3>" + esc(s.title) + "</h3>" +
+      '<div class="meta"><span class="tag family">' + esc(familyName(s.family)) + "</span>" +
+        (s.version ? '<span class="tag">Version ' + esc(s.version) + "</span>" : "") +
+        (s.audience ? '<span class="tag">' + esc([].concat(s.audience).join(", ")) + "</span>" : "") +
+      "</div>" +
+      '<p class="summary">' + esc(s.summary) + "</p>" +
+      (sections ? "<details><summary>More about this skill</summary>" + sections + "</details>" : "") +
+      '<div class="actions">' +
+        '<a class="btn primary" href="' + file + '" download="' + esc(s.name) + '.txt">Download</a>' +
+        '<button class="btn secondary" type="button" data-copy="' + file + '">Copy text</button>' +
+      "</div></article>";
+  }
+
+  function matches(s){
+    if(state.family !== "all" && s.family !== state.family) return false;
+    if(!state.q) return true;
+    var hay = [s.title, s.summary, s.what_it_does].concat(s.good_for || [], s.try_saying || [], s.audience || []).join(" ").toLowerCase();
+    return state.q.split(/\s+/).every(function(w){ return hay.indexOf(w) !== -1; });
+  }
+
+  function render(){
+    var shown = state.skills.filter(matches);
+    if(!state.skills.length){
+      grid.innerHTML = '<p class="empty">The first skills are being tested now. Check back soon, or see what\'s coming below.</p>';
+      count.textContent = "";
+      return;
+    }
+    grid.innerHTML = shown.length ? shown.map(card).join("") : '<p class="empty">No skills match that search. Try a different word or choose “All”.</p>';
+    count.textContent = shown.length + (shown.length === 1 ? " skill" : " skills") + (shown.length < state.skills.length ? " of " + state.skills.length : "");
+  }
+
+  function chips(){
+    var used = {};
+    state.skills.forEach(function(s){ used[s.family] = true; });
+    var keys = Object.keys(used);
+    if(keys.length < 2){ document.getElementById("chips").innerHTML = ""; return; }
+    var html = '<button class="chip" type="button" data-family="all" aria-pressed="true">All</button>' +
+      keys.sort(function(a, b){ return familyName(a).localeCompare(familyName(b)); }).map(function(k){
+        return '<button class="chip" type="button" data-family="' + esc(k) + '" aria-pressed="false">' + esc(familyName(k)) + "</button>";
+      }).join("");
+    document.getElementById("chips").innerHTML = html;
+  }
+
+  document.getElementById("chips").addEventListener("click", function(e){
+    var b = e.target.closest("[data-family]");
+    if(!b) return;
+    state.family = b.getAttribute("data-family");
+    this.querySelectorAll(".chip").forEach(function(c){ c.setAttribute("aria-pressed", String(c === b)); });
+    render();
+  });
+  document.getElementById("q").addEventListener("input", function(){
+    state.q = this.value.trim().toLowerCase();
+    render();
+  });
+  grid.addEventListener("click", function(e){
+    var b = e.target.closest("[data-copy]");
+    if(!b) return;
+    fetch(b.getAttribute("data-copy")).then(function(r){ return r.text(); }).then(function(t){
+      return navigator.clipboard.writeText(t);
+    }).then(function(){
+      b.textContent = "Copied";
+    }, function(){
+      b.textContent = "Copy failed, use Download";
+    }).then(function(){
+      setTimeout(function(){ b.textContent = "Copy text"; }, 2500);
+    });
+  });
+
+  fetch("skills.json", {cache: "no-cache"}).then(function(r){ return r.json(); }).then(function(data){
+    state.skills = (data.skills || []).slice().sort(function(a, b){ return a.title.localeCompare(b.title); });
+    state.families = data.families || {};
+    if(data.updated){
+      document.getElementById("updated").textContent = new Date(data.updated + "T12:00:00").toLocaleDateString("en-GB", {day: "numeric", month: "long", year: "numeric"});
+    }
+    var soon = data.coming_soon || [];
+    if(soon.length){
+      document.getElementById("soon").innerHTML = soon.map(function(s){
+        return "<li><strong>" + esc(s.title) + "</strong><span>" + esc(s.summary) + "</span></li>";
+      }).join("");
+      document.getElementById("soon-section").hidden = false;
+    }
+    chips();
+    render();
+    if(location.hash){
+      var el = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+      if(el){ var d = el.querySelector("details"); if(d) d.open = true; el.scrollIntoView(); }
+    }
+  }).catch(function(){
+    grid.innerHTML = '<p class="empty">The skills list couldn\'t be loaded. Please refresh the page.</p>';
+  });
+})();
+</script>
+</body>
+</html>

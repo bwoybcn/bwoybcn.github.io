@@ -1,0 +1,17 @@
+{
+  "name": "clear-message-rewriter",
+  "title": "Clear message rewriter",
+  "family": "clear-communication",
+  "version": "1.0",
+  "audience": ["All staff"],
+  "summary": "Rewrites an email, announcement or set of instructions so it is clear, direct and easy to act on.",
+  "what_it_does": "A paragraph in plain English explaining what the skill does and who it helps.",
+  "how_it_works": [
+    "You paste in your draft and, if you like, say who it's for.",
+    "It puts the purpose in the first line and numbers each thing you're asking for.",
+    "It gives you the rewrite, then a short list of what it changed and why."
+  ],
+  "good_for": ["Emails asking colleagues to do something by a date", "Canvas announcements"],
+  "not_for": ["Formal letters that must follow a fixed template"],
+  "try_saying": ["Can you make this email clearer?", "Rewrite this announcement so students know exactly what to do."]
+}
