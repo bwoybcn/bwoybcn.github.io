@@ -7,7 +7,46 @@
     "teaching": "Teaching and learning",
     "quality": "Skill quality and governance"
   },
-  "skills": [],
+  "skills": [
+    {
+      "name": "meeting-minutes",
+      "title": "Meeting minutes and actions",
+      "family": "professional-services",
+      "version": "0.4",
+      "audience": [
+        "Professional services staff",
+        "Committee secretaries",
+        "Team leads"
+      ],
+      "summary": "Turns meeting notes or a transcript into formal minutes, action notes or a decisions log, with a clear list of actions, owners and dates.",
+      "what_it_does": "Paste in your notes, a Teams transcript or a meeting recap and ask for minutes. You get a draft in the right style: formal minutes for committees and boards, short action notes for team meetings, or a one-line-per-decision log. It never guesses. Anything unclear, such as a vague owner, a figure given two ways or a date like \"next Friday\", is marked [to confirm] and listed so you can check it with the chair before you send anything out.",
+      "how_it_works": [
+        "You paste or upload your notes or transcript and say what you need, for example \"write up the minutes\".",
+        "It picks the format from the kind of meeting and tells you which one it used.",
+        "It records only what was actually agreed, and leaves out side conversations and small talk.",
+        "If the notes include personal details, such as a named student's circumstances or a colleague's sickness, it leaves them out and tells you what it removed.",
+        "It ends with a numbered list of actions (owner and due date) and a list of points to check with the chair, to delete before you circulate."
+      ],
+      "good_for": [
+        "Committee, board and panel minutes from rough notes",
+        "Team meeting action notes",
+        "Turning a Teams transcript into a tidy record",
+        "Pulling out just the decisions from a project board"
+      ],
+      "not_for": [
+        "Agendas or meeting invites (it won't write minutes for a meeting that hasn't happened)",
+        "Appeal, misconduct, disciplinary or grievance hearings",
+        "Summarising an email thread or a document",
+        "Transcribing audio or video"
+      ],
+      "try_saying": [
+        "Can you write up minutes from these notes?",
+        "Turn this Teams transcript into formal minutes for the School Board.",
+        "Just give me a decisions log from this project board.",
+        "Who agreed to do what? Make me an action list with owners and dates."
+      ]
+    }
+  ],
   "coming_soon": [
     {
       "title": "Clear message rewriter",
@@ -18,11 +57,6 @@
       "title": "Clarity checker",
       "family": "clear-communication",
       "summary": "Checks a draft before you send it and lists anything a reader could misread, miss or find stressful."
-    },
-    {
-      "title": "Meeting minutes and actions",
-      "family": "professional-services",
-      "summary": "Turns meeting notes or a transcript into tidy minutes with a clear list of actions, owners and dates."
     },
     {
       "title": "Catch me up",
