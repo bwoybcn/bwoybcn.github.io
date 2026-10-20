@@ -5,107 +5,229 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>nebulaONE Skills Library</title>
 <meta name="description" content="Ready-made skills for nebulaONE, with what each one does, how it works and a download.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --navy:#1d2d5c; --navy-dark:#14203f; --blue:#2b5bd7; --teal:#0e8f8b;
-    --ink:#22283a; --muted:#5c6478; --line:#e3e6ef;
-    --bg:#f4f6fb; --card:#ffffff; --soft:#eef1f9;
-    --btn:#2b5bd7; --btn-ink:#ffffff; --focus:#c99514;
-    --radius:14px; --shadow:0 1px 3px rgba(20,32,63,.08),0 8px 24px rgba(20,32,63,.07);
+    --ink:#1b2236; --muted:#5b6479; --faint:#8a92a6; --line:#e4e7ef;
+    --bg:#f6f7fb; --card:#ffffff; --soft:#f0f2f8;
+    --brand:#3d4fd6; --brand-ink:#ffffff; --brand-soft:#eceefe;
+    --hero-a:#101733; --hero-b:#1f2b63; --hero-c:#3d4fd6;
+    --focus:#f2b31b;
+    --radius:18px;
+    --shadow-sm:0 1px 2px rgba(16,23,51,.06);
+    --shadow:0 1px 2px rgba(16,23,51,.05),0 10px 30px -12px rgba(16,23,51,.18);
+    --shadow-lg:0 2px 4px rgba(16,23,51,.06),0 22px 44px -18px rgba(16,23,51,.32);
+    --f-clear:#0e8f8b; --f-clear-soft:#e3f5f4;
+    --f-ed:#7a4bd6; --f-ed-soft:#f0eafc;
+    --f-ps:#d0671f; --f-ps-soft:#fcefe4;
+    --f-teach:#2b6fd7; --f-teach-soft:#e6effd;
+    --f-quality:#2f8a4d; --f-quality-soft:#e5f4ea;
   }
   @media (prefers-color-scheme: dark){
     :root{
-      --ink:#e6e9f2; --muted:#a6aec2; --line:#2c3550;
-      --bg:#0f1528; --card:#182038; --soft:#1f2944;
-      --btn:#5b84ee; --btn-ink:#0f1528; --teal:#3fc2bd;
-      --shadow:0 1px 3px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);
+      --ink:#e8ebf4; --muted:#a8b0c4; --faint:#7d869c; --line:#28304a;
+      --bg:#0c1122; --card:#151c33; --soft:#1b2340;
+      --brand:#8593ff; --brand-ink:#0c1122; --brand-soft:#232c55;
+      --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px -12px rgba(0,0,0,.6);
+      --shadow-lg:0 2px 4px rgba(0,0,0,.3),0 22px 44px -18px rgba(0,0,0,.7);
+      --f-clear:#4fd1cb; --f-clear-soft:#14363a;
+      --f-ed:#b393ff; --f-ed-soft:#2a2150;
+      --f-ps:#ffa265; --f-ps-soft:#3a2617;
+      --f-teach:#7fb0ff; --f-teach-soft:#1a2c4f;
+      --f-quality:#6fd38f; --f-quality-soft:#163522;
     }
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;font-size:16px}
-  .wrap{max-width:1060px;margin:0 auto;padding:0 16px}
-  a{color:var(--btn)}
-  :focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+  html{scroll-behavior:smooth}
+  body{font-family:Inter,'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 16px}
+  a{color:var(--brand)}
+  svg{flex:none}
+  :focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:6px}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
   .skip{position:absolute;left:-9999px}
-  .skip:focus{left:16px;top:16px;background:#fff;color:#000;padding:8px 12px;z-index:10}
+  .skip:focus{left:16px;top:16px;background:#fff;color:#000;padding:8px 12px;z-index:10;border-radius:8px}
 
-  header{background:linear-gradient(135deg,var(--navy-dark) 0%,var(--navy) 55%,#2a3f7e 100%);color:#fff;padding:40px 0 32px}
-  .crumb{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:#aebadf;font-weight:600}
-  header h1{font-size:clamp(26px,4vw,38px);line-height:1.2;margin:10px 0 8px;font-weight:700}
-  header p{color:#c9d3ef;max-width:660px}
+  /* ---------- hero ---------- */
+  .hero{position:relative;overflow:hidden;color:#fff;padding:56px 0 96px;
+    background:
+      radial-gradient(600px 300px at 85% 10%,rgba(122,75,214,.55),transparent 70%),
+      radial-gradient(500px 280px at 10% 110%,rgba(14,143,139,.45),transparent 70%),
+      linear-gradient(135deg,var(--hero-a) 0%,var(--hero-b) 60%,#26357a 100%)}
+  .hero::before{content:"";position:absolute;inset:0;opacity:.18;
+    background-image:radial-gradient(rgba(255,255,255,.7) 1px,transparent 1px);background-size:22px 22px;
+    -webkit-mask-image:linear-gradient(180deg,#000 0%,transparent 85%);mask-image:linear-gradient(180deg,#000 0%,transparent 85%)}
+  .hero .wrap{position:relative}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#d7ddff;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);padding:6px 12px;border-radius:999px}
+  .hero h1{font-family:Fraunces,Georgia,serif;font-weight:700;font-size:clamp(36px,6vw,60px);line-height:1.05;letter-spacing:-.01em;margin:18px 0 14px}
+  .hero h1 em{font-style:normal;background:linear-gradient(90deg,#9fe8e3,#c7b5ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p{color:#cfd6f3;font-size:clamp(16px,2vw,18.5px);max-width:620px}
+  .search{margin-top:28px;max-width:620px;position:relative}
+  .search svg{position:absolute;left:18px;top:50%;transform:translateY(-50%);color:var(--faint)}
+  .search input{width:100%;font:inherit;font-size:17px;padding:16px 18px 16px 52px;border-radius:14px;border:1px solid transparent;background:var(--card);color:var(--ink);box-shadow:var(--shadow-lg)}
+  .search input::placeholder{color:var(--faint)}
+  .stats{display:flex;flex-wrap:wrap;gap:22px;margin-top:22px;color:#cfd6f3;font-size:14.5px}
+  .stats b{color:#fff;font-size:17px;margin-right:4px}
 
-  main{padding:28px 0 56px}
-  section{margin-bottom:36px}
-  h2{font-size:22px;margin-bottom:12px}
+  main{margin-top:-56px;position:relative;padding-bottom:64px}
+  section{margin-bottom:56px}
+  .sec-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 16px;margin-bottom:18px}
+  h2{font-family:Fraunces,Georgia,serif;font-size:clamp(24px,3vw,30px);font-weight:700;letter-spacing:-.01em}
+  .lead{color:var(--muted)}
 
-  .howto{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px 22px}
-  .howto ol{padding-left:22px}
-  .howto li{margin:4px 0}
-  .note{color:var(--muted);font-size:14.5px;margin-top:10px}
+  /* ---------- steps ---------- */
+  .steps{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;counter-reset:step}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px 20px 18px;position:relative}
+  .step .ico{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:var(--brand-soft);color:var(--brand);margin-bottom:12px}
+  .step .num{position:absolute;top:18px;right:20px;font-family:Fraunces,Georgia,serif;font-size:28px;font-weight:700;color:var(--line);line-height:1}
+  .step h3{font-size:16.5px;margin-bottom:4px}
+  .step p{color:var(--muted);font-size:15px}
+  .tip{display:flex;gap:10px;align-items:flex-start;margin-top:14px;color:var(--muted);font-size:14.5px;background:var(--soft);border-radius:12px;padding:12px 14px}
+  .tip svg{color:var(--brand);margin-top:2px}
 
-  .controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:16px}
-  .controls input{flex:1 1 260px;min-width:0;font:inherit;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink)}
+  /* ---------- filters ---------- */
   .chips{display:flex;flex-wrap:wrap;gap:8px}
-  .chip{font:inherit;font-size:14px;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
-  .chip[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
-  .count{color:var(--muted);font-size:14px;margin-bottom:12px}
+  .chip{font:inherit;font-size:14px;font-weight:500;padding:7px 14px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:background .15s,border-color .15s}
+  .chip:hover{border-color:var(--faint)}
+  .chip .dot{width:8px;height:8px;border-radius:50%;background:var(--c,var(--brand))}
+  .chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+  .count{color:var(--muted);font-size:14px;margin:14px 0 12px}
 
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 20px;display:flex;flex-direction:column;gap:10px}
-  .card h3{font-size:18.5px;line-height:1.3}
-  .meta{display:flex;flex-wrap:wrap;gap:6px;font-size:12.5px}
-  .tag{background:var(--soft);color:var(--muted);border-radius:6px;padding:2px 8px}
-  .tag.family{color:var(--teal);font-weight:600}
-  .summary{color:var(--ink)}
-  details{border-top:1px solid var(--line);padding-top:8px}
-  summary{cursor:pointer;font-weight:600;color:var(--btn)}
-  details h4{font-size:14px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:14px 0 4px}
-  details ul,details ol{padding-left:20px}
-  details li{margin:3px 0}
-  .prompt{font-style:italic}
+  /* ---------- skill cards ---------- */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px;align-items:start}
+  @media (max-width:400px){.grid{grid-template-columns:1fr}}
+  .card{--c:var(--brand);--cs:var(--brand-soft);background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column;transition:transform .18s ease,box-shadow .18s ease}
+  .card:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+  .card::before{content:"";height:5px;background:linear-gradient(90deg,var(--c),color-mix(in srgb,var(--c) 40%,transparent))}
+  .card-body{padding:20px 22px 22px;display:flex;flex-direction:column;gap:12px;flex:1}
+  .card-top{display:flex;gap:14px;align-items:flex-start}
+  .badge{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:var(--cs);color:var(--c)}
+  .card h3{font-size:19px;line-height:1.3;letter-spacing:-.005em}
+  .fam{font-size:13px;font-weight:600;color:var(--c)}
+  .summary{color:var(--ink);font-size:15.5px}
+  .meta{display:flex;flex-wrap:wrap;gap:6px}
+  .tag{font-size:12.5px;font-weight:500;background:var(--soft);color:var(--muted);border-radius:999px;padding:3px 10px}
+  details{border-top:1px solid var(--line);padding-top:10px}
+  summary{cursor:pointer;font-weight:600;font-size:15px;color:var(--ink);list-style:none;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:2px 0}
+  summary::-webkit-details-marker{display:none}
+  summary .chev{transition:transform .2s;color:var(--faint)}
+  details[open] summary .chev{transform:rotate(180deg)}
+  .more{padding-top:4px}
+  .more h4{display:flex;align-items:center;gap:8px;font-size:12.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:16px 0 6px}
+  .more h4::before{content:"";width:14px;height:2px;border-radius:2px;background:var(--c)}
+  .more p{font-size:15px}
+  .more ul,.more ol{padding-left:20px;font-size:15px}
+  .more li{margin:4px 0}
+  .more li::marker{color:var(--c);font-weight:600}
+  .prompts{list-style:none;padding:0!important;display:flex;flex-direction:column;gap:8px}
+  .prompts li{margin:0!important;background:var(--cs);border-radius:12px 12px 12px 4px;padding:8px 12px;font-size:14.5px}
   .actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:6px}
-  .btn{display:inline-flex;align-items:center;gap:6px;font:inherit;font-size:15px;font-weight:600;padding:9px 16px;border-radius:10px;border:1px solid var(--btn);text-decoration:none;cursor:pointer}
-  .btn.primary{background:var(--btn);color:var(--btn-ink)}
-  .btn.secondary{background:transparent;color:var(--btn)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:inherit;font-size:15px;font-weight:600;padding:10px 16px;border-radius:12px;border:1px solid transparent;text-decoration:none;cursor:pointer;transition:filter .15s,background .15s}
+  .btn.primary{background:var(--brand);color:var(--brand-ink);flex:1}
+  .btn.primary:hover{filter:brightness(1.08)}
+  .btn.secondary{background:var(--soft);color:var(--ink);border-color:var(--line)}
+  .btn.secondary:hover{background:var(--line)}
 
-  .empty{background:var(--card);border:1px dashed var(--line);border-radius:var(--radius);padding:22px;color:var(--muted)}
-  .soon{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
-  .soon li{background:var(--soft);border-radius:12px;padding:14px 16px}
-  .soon strong{display:block}
-  .soon span{color:var(--muted);font-size:14.5px}
+  .empty{background:var(--card);border:1px dashed var(--line);border-radius:var(--radius);padding:36px 24px;text-align:center;color:var(--muted)}
+  .empty .ico{width:56px;height:56px;border-radius:16px;display:grid;place-items:center;background:var(--brand-soft);color:var(--brand);margin:0 auto 12px}
+  .empty strong{display:block;color:var(--ink);font-size:17px;margin-bottom:4px}
 
-  footer{border-top:1px solid var(--line);color:var(--muted);font-size:14px;padding:20px 0 32px}
+  /* ---------- coming soon ---------- */
+  .soon{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px}
+  .soon li{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:6px;box-shadow:var(--shadow-sm)}
+  .soon .row{display:flex;align-items:center;justify-content:space-between;gap:8px}
+  .soon .fam{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;white-space:nowrap}
+  .soon .fam::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--c)}
+  .pill{font-size:11.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);border:1px dashed var(--faint);border-radius:999px;padding:2px 8px;white-space:nowrap}
+  .soon strong{font-size:16px}
+  .soon span.desc{color:var(--muted);font-size:14.5px}
+
+  [data-family="clear-communication"]{--c:var(--f-clear);--cs:var(--f-clear-soft)}
+  [data-family="educational-development"]{--c:var(--f-ed);--cs:var(--f-ed-soft)}
+  [data-family="professional-services"]{--c:var(--f-ps);--cs:var(--f-ps-soft)}
+  [data-family="teaching"]{--c:var(--f-teach);--cs:var(--f-teach-soft)}
+  [data-family="quality"]{--c:var(--f-quality);--cs:var(--f-quality-soft)}
+
+  footer{border-top:1px solid var(--line);color:var(--muted);font-size:14px;padding:24px 0 36px}
+  footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px}
+
+  @media (prefers-reduced-motion: reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
 <a class="skip" href="#library">Skip to the skills</a>
-<header>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11"/><path d="m7 10 5 5 5-5"/><path d="M5 20h14"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></symbol>
+    <symbol id="i-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M12 8v8M8 12h8"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12Z"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M6 18l2.5-2.5M15.5 8.5 18 6"/></symbol>
+    <!-- family icons -->
+    <symbol id="f-clear-communication" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9h8M8 12h5"/></symbol>
+    <symbol id="f-educational-development" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m2 9 10-5 10 5-10 5z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/></symbol>
+    <symbol id="f-professional-services" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/></symbol>
+    <symbol id="f-teaching" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5M9 7h6"/></symbol>
+    <symbol id="f-quality" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.5 3.4 8 8 9 4.6-1 8-4.5 8-9V6z"/><path d="m9 12 2 2 4-4"/></symbol>
+  </defs>
+</svg>
+
+<header class="hero">
   <div class="wrap">
-    <div class="crumb">nebulaONE</div>
-    <h1>Skills Library</h1>
-    <p>Skills teach nebulaONE how to do a particular job well, such as writing minutes or checking a message for clarity. Each skill here has been reviewed and tested. Find one you need, read what it does, and download it to add to your own nebulaONE.</p>
+    <span class="eyebrow"><svg width="15" height="15"><use href="#i-spark"/></svg>For nebulaONE</span>
+    <h1>The Skills <em>Library</em></h1>
+    <p>Skills teach nebulaONE how to do a particular job well, such as writing minutes or checking a message for clarity. Every skill here has been reviewed and tested. Find one you need, see what it does, and add it to your own nebulaONE in a minute.</p>
+    <div class="search">
+      <label for="q" class="sr">Search skills</label>
+      <svg width="20" height="20" aria-hidden="true"><use href="#i-search"/></svg>
+      <input id="q" type="search" placeholder="What do you need help with? Try “minutes” or “email”" autocomplete="off">
+    </div>
+    <div class="stats" id="stats" aria-live="polite"></div>
   </div>
 </header>
 
 <main class="wrap">
   <section aria-labelledby="howto-h">
-    <h2 id="howto-h">How to use a skill</h2>
-    <div class="howto">
-      <ol>
-        <li>Find a skill below and open <strong>More about this skill</strong> to check it fits what you need.</li>
-        <li>Select <strong>Download</strong> to save the skill as a text file, or <strong>Copy text</strong> to copy it.</li>
-        <li>In nebulaONE, create a new personal skill and add the file or paste in the text.</li>
-        <li>Start a new chat and ask for the task in your own words. nebulaONE picks the skill when it fits, so you don't need to name it.</li>
-      </ol>
-      <p class="note">Personal skills are only visible to you. If you'd like a skill shared with your team or added for everyone, contact the library's owner.</p>
-    </div>
+    <h2 id="howto-h" class="sr">How to use a skill</h2>
+    <ol class="steps">
+      <li class="step">
+        <span class="num" aria-hidden="true">1</span>
+        <div class="ico"><svg width="22" height="22" aria-hidden="true"><use href="#i-search"/></svg></div>
+        <h3>Find a skill</h3>
+        <p>Search or browse below, then open <strong>More about this skill</strong> to check it fits.</p>
+      </li>
+      <li class="step">
+        <span class="num" aria-hidden="true">2</span>
+        <div class="ico"><svg width="22" height="22" aria-hidden="true"><use href="#i-download"/></svg></div>
+        <h3>Download or copy it</h3>
+        <p>Save the skill as a text file, or copy the text straight to your clipboard.</p>
+      </li>
+      <li class="step">
+        <span class="num" aria-hidden="true">3</span>
+        <div class="ico"><svg width="22" height="22" aria-hidden="true"><use href="#i-plus"/></svg></div>
+        <h3>Add it to nebulaONE</h3>
+        <p>Create a new personal skill and add the file or paste in the text.</p>
+      </li>
+      <li class="step">
+        <span class="num" aria-hidden="true">4</span>
+        <div class="ico"><svg width="22" height="22" aria-hidden="true"><use href="#i-chat"/></svg></div>
+        <h3>Just ask</h3>
+        <p>Start a new chat and ask in your own words. nebulaONE picks the skill when it fits.</p>
+      </li>
+    </ol>
+    <p class="tip"><svg width="18" height="18" aria-hidden="true"><use href="#i-info"/></svg><span>Personal skills are only visible to you. If you'd like a skill shared with your team or added for everyone, contact the library's owner.</span></p>
   </section>
 
   <section id="library" aria-labelledby="library-h">
-    <h2 id="library-h">Skills</h2>
-    <div class="controls">
-      <label for="q" class="skip">Search skills</label>
-      <input id="q" type="search" placeholder="Search, for example “minutes” or “email”" autocomplete="off">
+    <div class="sec-head">
+      <h2 id="library-h">Browse skills</h2>
       <div class="chips" id="chips" role="group" aria-label="Filter by area"></div>
     </div>
     <p class="count" id="count" aria-live="polite"></p>
@@ -114,91 +236,118 @@
   </section>
 
   <section id="soon-section" aria-labelledby="soon-h" hidden>
-    <h2 id="soon-h">Coming soon</h2>
-    <p class="note" style="margin:0 0 12px">These are being written and tested now. They'll appear above with a download once they pass review.</p>
+    <div class="sec-head">
+      <h2 id="soon-h">Coming soon</h2>
+      <p class="lead">Being written and tested now. They'll move up with a download once they pass review.</p>
+    </div>
     <ul class="soon" id="soon"></ul>
   </section>
 </main>
 
 <footer>
-  <div class="wrap">Last updated <span id="updated">recently</span>. Skills are plain text files and work in nebulaONE only.</div>
+  <div class="wrap">
+    <span>Last updated <span id="updated">recently</span></span>
+    <span>Skills are plain text files for nebulaONE.</span>
+  </div>
 </footer>
 
 <script>
 (function(){
-  var state = {skills: [], families: {}, family: "all", q: ""};
+  var state = {skills: [], soon: [], families: {}, family: "all", q: ""};
   var grid = document.getElementById("grid");
   var count = document.getElementById("count");
+  var KNOWN_ICONS = ["clear-communication", "educational-development", "professional-services", "teaching", "quality"];
 
   function esc(s){
     return String(s == null ? "" : s).replace(/[&<>"']/g, function(c){
       return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c];
     });
   }
+  function icon(id, size){
+    return '<svg width="' + size + '" height="' + size + '" aria-hidden="true"><use href="#' + id + '"/></svg>';
+  }
+  function familyIcon(key, size){
+    return icon(KNOWN_ICONS.indexOf(key) !== -1 ? "f-" + key : "i-spark", size);
+  }
   function list(items, tag, cls){
     if(!items || !items.length) return "";
-    return "<" + tag + ">" + items.map(function(i){
-      return "<li" + (cls ? ' class="' + cls + '"' : "") + ">" + esc(i) + "</li>";
+    return "<" + tag + (cls ? ' class="' + cls + '"' : "") + ">" + items.map(function(i){
+      return "<li>" + esc(i) + "</li>";
     }).join("") + "</" + tag + ">";
   }
   function familyName(key){ return state.families[key] || key; }
 
   function card(s){
     var file = "downloads/" + encodeURIComponent(s.name) + ".txt";
-    var sections = "";
-    if(s.what_it_does) sections += "<h4>What it does</h4><p>" + esc(s.what_it_does) + "</p>";
-    if(s.how_it_works && s.how_it_works.length) sections += "<h4>How it works</h4>" + list(s.how_it_works, "ol");
-    if(s.good_for && s.good_for.length) sections += "<h4>Good for</h4>" + list(s.good_for, "ul");
-    if(s.not_for && s.not_for.length) sections += "<h4>Not for</h4>" + list(s.not_for, "ul");
-    if(s.try_saying && s.try_saying.length) sections += "<h4>Try saying</h4>" + list(s.try_saying.map(function(p){ return "“" + p + "”"; }), "ul", "prompt");
-    return '<article class="card" id="' + esc(s.name) + '">' +
-      "<h3>" + esc(s.title) + "</h3>" +
-      '<div class="meta"><span class="tag family">' + esc(familyName(s.family)) + "</span>" +
-        (s.version ? '<span class="tag">Version ' + esc(s.version) + "</span>" : "") +
-        (s.audience ? '<span class="tag">' + esc([].concat(s.audience).join(", ")) + "</span>" : "") +
-      "</div>" +
+    var more = "";
+    if(s.what_it_does) more += "<h4>What it does</h4><p>" + esc(s.what_it_does) + "</p>";
+    if(s.how_it_works && s.how_it_works.length) more += "<h4>How it works</h4>" + list(s.how_it_works, "ol");
+    if(s.good_for && s.good_for.length) more += "<h4>Good for</h4>" + list(s.good_for, "ul");
+    if(s.not_for && s.not_for.length) more += "<h4>Not for</h4>" + list(s.not_for, "ul");
+    if(s.try_saying && s.try_saying.length) more += "<h4>Try saying</h4>" + list(s.try_saying.map(function(p){ return "“" + p + "”"; }), "ul", "prompts");
+    var tags = (s.version ? '<span class="tag">Version ' + esc(s.version) + "</span>" : "") +
+      [].concat(s.audience || []).map(function(a){ return '<span class="tag">' + esc(a) + "</span>"; }).join("");
+    return '<article class="card" id="' + esc(s.name) + '" data-family="' + esc(s.family) + '"><div class="card-body">' +
+      '<div class="card-top"><div class="badge">' + familyIcon(s.family, 24) + "</div>" +
+        "<div><h3>" + esc(s.title) + '</h3><div class="fam">' + esc(familyName(s.family)) + "</div></div></div>" +
       '<p class="summary">' + esc(s.summary) + "</p>" +
-      (sections ? "<details><summary>More about this skill</summary>" + sections + "</details>" : "") +
+      (tags ? '<div class="meta">' + tags + "</div>" : "") +
+      (more ? '<details><summary>More about this skill' + '<span class="chev">' + icon("i-chev", 18) + '</span></summary><div class="more">' + more + "</div></details>" : "") +
       '<div class="actions">' +
-        '<a class="btn primary" href="' + file + '" download="' + esc(s.name) + '.txt">Download</a>' +
-        '<button class="btn secondary" type="button" data-copy="' + file + '">Copy text</button>' +
-      "</div></article>";
+        '<a class="btn primary" href="' + file + '" download="' + esc(s.name) + '.txt">' + icon("i-download", 18) + "Download</a>" +
+        '<button class="btn secondary" type="button" data-copy="' + file + '">' + icon("i-copy", 18) + "<span>Copy text</span></button>" +
+      "</div></div></article>";
   }
 
   function matches(s){
     if(state.family !== "all" && s.family !== state.family) return false;
     if(!state.q) return true;
-    var hay = [s.title, s.summary, s.what_it_does].concat(s.good_for || [], s.try_saying || [], s.audience || []).join(" ").toLowerCase();
+    var hay = [s.title, s.summary, s.what_it_does, familyName(s.family)].concat(s.good_for || [], s.try_saying || [], s.audience || []).join(" ").toLowerCase();
     return state.q.split(/\s+/).every(function(w){ return hay.indexOf(w) !== -1; });
   }
 
+  function emptyBox(title, text){
+    return '<div class="empty"><div class="ico">' + icon("i-spark", 26) + "</div><strong>" + esc(title) + "</strong>" + esc(text) + "</div>";
+  }
+
   function render(){
-    var shown = state.skills.filter(matches);
     if(!state.skills.length){
-      grid.innerHTML = '<p class="empty">The first skills are being tested now. Check back soon, or see what\'s coming below.</p>';
+      grid.innerHTML = emptyBox("The first skills are in testing", "They'll appear here as soon as they pass review. See what's on the way below.");
       count.textContent = "";
       return;
     }
-    grid.innerHTML = shown.length ? shown.map(card).join("") : '<p class="empty">No skills match that search. Try a different word or choose “All”.</p>';
-    count.textContent = shown.length + (shown.length === 1 ? " skill" : " skills") + (shown.length < state.skills.length ? " of " + state.skills.length : "");
+    var shown = state.skills.filter(matches);
+    grid.innerHTML = shown.length ? shown.map(card).join("") : emptyBox("No skills match that search", "Try a different word, or choose All.");
+    count.textContent = shown.length < state.skills.length
+      ? "Showing " + shown.length + " of " + state.skills.length + " skills"
+      : state.skills.length + (state.skills.length === 1 ? " skill" : " skills") + " ready to use";
+  }
+
+  function stats(){
+    var fams = {};
+    state.skills.concat(state.soon).forEach(function(s){ fams[s.family] = true; });
+    document.getElementById("stats").innerHTML =
+      "<span><b>" + state.skills.length + "</b>ready to download</span>" +
+      (state.soon.length ? "<span><b>" + state.soon.length + "</b>in testing</span>" : "") +
+      "<span><b>" + Object.keys(fams).length + "</b>areas of work</span>";
   }
 
   function chips(){
     var used = {};
     state.skills.forEach(function(s){ used[s.family] = true; });
     var keys = Object.keys(used);
-    if(keys.length < 2){ document.getElementById("chips").innerHTML = ""; return; }
-    var html = '<button class="chip" type="button" data-family="all" aria-pressed="true">All</button>' +
+    var box = document.getElementById("chips");
+    if(keys.length < 2){ box.innerHTML = ""; return; }
+    box.innerHTML = '<button class="chip" type="button" data-f="all" aria-pressed="true">All</button>' +
       keys.sort(function(a, b){ return familyName(a).localeCompare(familyName(b)); }).map(function(k){
-        return '<button class="chip" type="button" data-family="' + esc(k) + '" aria-pressed="false">' + esc(familyName(k)) + "</button>";
+        return '<button class="chip" type="button" data-f="' + esc(k) + '" data-family="' + esc(k) + '" aria-pressed="false"><span class="dot"></span>' + esc(familyName(k)) + "</button>";
       }).join("");
-    document.getElementById("chips").innerHTML = html;
   }
 
   document.getElementById("chips").addEventListener("click", function(e){
-    var b = e.target.closest("[data-family]");
+    var b = e.target.closest("[data-f]");
     if(!b) return;
-    state.family = b.getAttribute("data-family");
+    state.family = b.getAttribute("data-f");
     this.querySelectorAll(".chip").forEach(function(c){ c.setAttribute("aria-pressed", String(c === b)); });
     render();
   });
@@ -206,33 +355,39 @@
     state.q = this.value.trim().toLowerCase();
     render();
   });
+  document.getElementById("q").addEventListener("keydown", function(e){
+    if(e.key === "Enter") document.getElementById("library").scrollIntoView();
+  });
   grid.addEventListener("click", function(e){
     var b = e.target.closest("[data-copy]");
     if(!b) return;
+    var label = b.querySelector("span");
     fetch(b.getAttribute("data-copy")).then(function(r){ return r.text(); }).then(function(t){
       return navigator.clipboard.writeText(t);
     }).then(function(){
-      b.textContent = "Copied";
+      label.textContent = "Copied";
     }, function(){
-      b.textContent = "Copy failed, use Download";
+      label.textContent = "Copy failed, use Download";
     }).then(function(){
-      setTimeout(function(){ b.textContent = "Copy text"; }, 2500);
+      setTimeout(function(){ label.textContent = "Copy text"; }, 2500);
     });
   });
 
   fetch("skills.json", {cache: "no-cache"}).then(function(r){ return r.json(); }).then(function(data){
     state.skills = (data.skills || []).slice().sort(function(a, b){ return a.title.localeCompare(b.title); });
+    state.soon = data.coming_soon || [];
     state.families = data.families || {};
     if(data.updated){
       document.getElementById("updated").textContent = new Date(data.updated + "T12:00:00").toLocaleDateString("en-GB", {day: "numeric", month: "long", year: "numeric"});
     }
-    var soon = data.coming_soon || [];
-    if(soon.length){
-      document.getElementById("soon").innerHTML = soon.map(function(s){
-        return "<li><strong>" + esc(s.title) + "</strong><span>" + esc(s.summary) + "</span></li>";
+    if(state.soon.length){
+      document.getElementById("soon").innerHTML = state.soon.map(function(s){
+        return '<li data-family="' + esc(s.family) + '"><div class="row"><span class="fam">' + esc(familyName(s.family)) +
+          '</span><span class="pill">In testing</span></div><strong>' + esc(s.title) + '</strong><span class="desc">' + esc(s.summary) + "</span></li>";
       }).join("");
       document.getElementById("soon-section").hidden = false;
     }
+    stats();
     chips();
     render();
     if(location.hash){
@@ -240,7 +395,7 @@
       if(el){ var d = el.querySelector("details"); if(d) d.open = true; el.scrollIntoView(); }
     }
   }).catch(function(){
-    grid.innerHTML = '<p class="empty">The skills list couldn\'t be loaded. Please refresh the page.</p>';
+    grid.innerHTML = emptyBox("The skills list couldn't be loaded", "Please refresh the page.");
   });
 })();
 </script>
