@@ -1,0 +1,38 @@
+{
+  "updated": "2026-10-20",
+  "families": {
+    "clear-communication": "Clear communication",
+    "educational-development": "Educational development",
+    "professional-services": "Professional services",
+    "teaching": "Teaching and learning",
+    "quality": "Skill quality and governance"
+  },
+  "skills": [],
+  "coming_soon": [
+    {
+      "title": "Clear message rewriter",
+      "family": "clear-communication",
+      "summary": "Rewrites an email, announcement or set of instructions so it is clear, direct and easy to act on."
+    },
+    {
+      "title": "Clarity checker",
+      "family": "clear-communication",
+      "summary": "Checks a draft before you send it and lists anything a reader could misread, miss or find stressful."
+    },
+    {
+      "title": "Meeting minutes and actions",
+      "family": "professional-services",
+      "summary": "Turns meeting notes or a transcript into tidy minutes with a clear list of actions, owners and dates."
+    },
+    {
+      "title": "Catch me up",
+      "family": "professional-services",
+      "summary": "Summarises a long email thread or set of documents into what happened, what's decided and what you need to do."
+    },
+    {
+      "title": "Workshop plan reviewer",
+      "family": "educational-development",
+      "summary": "Reviews a staff workshop or training plan as a critical friend, with a short list of prioritised fixes."
+    }
+  ]
+}
