@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-20",
+  "updated": "2026-10-21",
   "families": {
     "clear-communication": "Clear communication",
     "educational-development": "Educational development",
@@ -8,6 +8,80 @@
     "quality": "Skill quality and governance"
   },
   "skills": [
+    {
+      "name": "clarity-checker",
+      "title": "Clarity checker",
+      "family": "clear-communication",
+      "version": "0.5",
+      "audience": [
+        "All staff",
+        "Students"
+      ],
+      "summary": "Checks a draft before you send it and lists anything a reader could misread, miss or find stressful.",
+      "what_it_does": "Paste in a draft and ask \"is this clear?\" or \"how will this come across?\". You get a one-line verdict, then a short list of issues, each quoting your words with a suggested fix, so you can tidy it up in your own voice. It looks for the things neurodivergent readers often find hard, such as hidden asks, vague deadlines, a \"quick chat\" with no reason, idioms and long paragraphs, and these make messages clearer for everyone. If your draft is already clear, it says so and doesn't invent problems.",
+      "how_it_works": [
+        "You paste your draft and ask whether it is clear, or how it will come across.",
+        "It gives a verdict: clear, mostly clear, or needs work.",
+        "It lists up to ten issues, most important first, each with the words it means and a short fix.",
+        "It checks how clearly the message reads, not whether the facts are right, but it will mention a date that doesn't match its weekday.",
+        "If you want the whole thing rewritten, ask and the Clear message rewriter takes over."
+      ],
+      "good_for": [
+        "A last check before an email goes to a whole cohort or team",
+        "Checking the tone of a message you're worried about",
+        "Getting feedback while keeping your own wording",
+        "Working out what a confusing email you received is asking"
+      ],
+      "not_for": [
+        "Rewriting the message (use the Clear message rewriter)",
+        "Spelling and grammar proofreading only",
+        "Essays or other assessed work",
+        "Approving policies or formal documents"
+      ],
+      "try_saying": [
+        "Is this email clear?",
+        "How will this come across to a student?",
+        "Check the tone of this, I don't want it to sound harsh.",
+        "Would someone who reads things literally understand this?"
+      ]
+    },
+    {
+      "name": "clear-message-rewriter",
+      "title": "Clear message rewriter",
+      "family": "clear-communication",
+      "version": "0.6",
+      "audience": [
+        "All staff",
+        "Students"
+      ],
+      "summary": "Rewrites an email, announcement or set of instructions so it is clear, direct and easy to act on.",
+      "what_it_does": "Paste in a draft and ask for it to be clearer. You get a rewrite that says what the message is about in the first line, numbers each thing you are asking for, and swaps vague timing like \"ASAP\" for a real date. If your draft doesn't give the date, it marks it [date to confirm] instead of guessing. It is designed with neurodivergent readers in mind, which makes messages clearer for everyone. You can ask for a style, such as direct and literal, structured, short, predictable or gentle on tone. You don't need to say anything about the reader's health or diagnosis, and it works better if you don't.",
+      "how_it_works": [
+        "You paste your draft and, if you like, say who it's for or how they like to receive information.",
+        "It puts the purpose first, numbers the asks and replaces idioms with plain wording, keeping your level of formality.",
+        "For a meeting request, it makes sure the reader knows why, when, where, how long and whether to prepare, and asks you to fill in anything missing.",
+        "It keeps every fact, date and requirement, and keeps optional things optional.",
+        "It ends with a short list of what it changed and anything you need to decide before you send it."
+      ],
+      "good_for": [
+        "Emails asking colleagues or students to do something by a date",
+        "Canvas announcements and reminders",
+        "\"Can we have a chat?\" messages that might worry the reader",
+        "Students writing to a tutor, for example to ask for an extension"
+      ],
+      "not_for": [
+        "Policies, regulations, assessment briefs or formal case letters (it offers a plain cover note instead)",
+        "Essays or other assessed work",
+        "Making a message more formal or professional",
+        "Translation, or prompts for AI tools"
+      ],
+      "try_saying": [
+        "Can you make this email clearer?",
+        "My colleague prefers direct, literal messages. Can you redo this one?",
+        "Rewrite this so it doesn't worry the student.",
+        "Restructure this announcement so nobody misses the deadline."
+      ]
+    },
     {
       "name": "meeting-minutes",
       "title": "Meeting minutes and actions",
@@ -48,16 +122,6 @@
     }
   ],
   "coming_soon": [
-    {
-      "title": "Clear message rewriter",
-      "family": "clear-communication",
-      "summary": "Rewrites an email, announcement or set of instructions so it is clear, direct and easy to act on."
-    },
-    {
-      "title": "Clarity checker",
-      "family": "clear-communication",
-      "summary": "Checks a draft before you send it and lists anything a reader could misread, miss or find stressful."
-    },
     {
       "title": "Catch me up",
       "family": "professional-services",
